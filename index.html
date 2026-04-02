@@ -1991,6 +1991,12 @@
   // ===== FORM HANDLER =====
   document.getElementById('lpForm').addEventListener('submit', async function(e) {
   e.preventDefault();
+   const recaptchaResponse = grecaptcha.getResponse();
+  if (!recaptchaResponse) {
+    alert('Please complete the "I\'m not a robot" check before submitting.');
+    return;
+  }
+  
   const btn = document.getElementById('submitBtn');
   btn.textContent = 'Submitting...';
   btn.disabled = true;
